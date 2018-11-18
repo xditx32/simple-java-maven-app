@@ -1,15 +1,24 @@
 pipeline {
-  agent any
-  stages {
-    stage('Preparation') {
-      steps {
-        git 'https://github.com/xditx32/simple-java-maven-app/'
-      }
+    agent any
+    tools {
+        maven 'maven'
+        jdk 'jdk'
     }
-    stage('Build') {
-      steps {
-        echo 'Jenkins Aditya06 Pipeline'
-      }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
     }
-  }
 }
