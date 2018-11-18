@@ -4,6 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Jenkins Aditya06 Pipeline'
+        sh 'mvn clean package'
       }
     }
   }
