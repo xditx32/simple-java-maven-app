@@ -10,7 +10,7 @@ pipeline {
                 sh 'mvn clean package'
             }
             steps {
-                sh
+                sh 'file 39'
             }
         }
         stage('Test') {
